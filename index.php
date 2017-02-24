@@ -16,10 +16,6 @@
 <?php 
 include('nav.php');
 require_once('config.php');
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-if ($conn->connect_error) {
-  die("Connection to database failed:" .$conn->connect_error);
-}
 
 $results = $conn->query("SELECT id,title,image FROM books;");
 $rows = $results->fetch_all(MYSQLI_ASSOC);
@@ -39,7 +35,6 @@ foreach ($rows as $row ) {
       <img src="<?=$row["image"]?>" alt="...">
       <div class="caption">
         <h4><?=$row["title"]?></h4>
-        <p>Build powerful and scalable single-page web applications</p>
         <p><a href="product.php?id=<?=$row['id']?>" class="btn btn-primary" role="button">More...</a>
       </div>
     </div>

@@ -13,13 +13,13 @@
 require_once("config.php");
 
 if (isset($_POST["submit"])) {
-  $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+  $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
-if ($connection->connect_error) {
-  die("Connection to database failed:".$connection->connect_error);
+if ($conn->connect_error) {
+  die("Connection to database failed:".$conn->connect_error);
 }
 
-$statement = $connection->prepare(
+$statement = $conn->prepare(
   "INSERT INTO `users`(
     `name`,
     `surname`,
@@ -29,7 +29,7 @@ $statement = $connection->prepare(
   VALUES (?,?,?,PASSWORD(?),?)");
 
 if (!$statement) {
-  die("Prepare failed:(".$connection->errno. ") ".$connection->error);
+  die("Prepare failed:(".$conn->errno. ") ".$conn->error);
 }
 
 $statement->bind_param("sssss",
@@ -40,7 +40,8 @@ $statement->bind_param("sssss",
   $_POST["gender"]);
 
 if ($statement->execute()) {
-  echo "You have successfully registered <a href=\"index.php\"> Back to main page";
+  header("location: userreg.php");
+  exit();
 }else{
   if ($statement->errno == 1062) {
     echo "This e-mail is already in use";
@@ -49,7 +50,7 @@ if ($statement->execute()) {
   }
 }
 
-$connection->close();
+$conn->close();
 }
 
 ?>
