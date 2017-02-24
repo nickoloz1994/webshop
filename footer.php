@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<footer class="footer">
+<footer class="footer" >
     <div class="container">
         <p><h4 class="text-muted">Get to Know Us</h4></p>
         <p><h5 class="text-muted">Career</h5></p>
