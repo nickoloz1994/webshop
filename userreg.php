@@ -16,13 +16,7 @@
   <p style="margin-left: 2%;"><a class="btn btn-primary btn-lg" href="login.php" role="button">Sign in</a></p>
 </div>
 
-<footer class="footer" style="position: absolute; right: 0;bottom: 0;left: 0;">
-    <div class="container">
-        <p><h4 class="text-muted">Get to Know Us</h4></p>
-        <p><h5 class="text-muted">Career</h5></p>
-        <p><h5 class="text-muted">About</h5></p>
-    </div>
-</footer>
+<?php include('stickyfooter.php'); ?>
 
 </body>
 </html>
