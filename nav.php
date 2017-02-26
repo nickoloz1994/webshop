@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<title>Registration</title>
+	<title></title>
 </head>
 <body>
 
@@ -44,7 +44,7 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <form class="navbar-form navbar-right">
+      <form class="navbar-form navbar-right" action="login.php" method="post">
       	<div class="form-group">
       		<input type="email" name="usrmail" class="form-control" placeholder="E-mail">
       		<input type="Password" name="usrpass" class="form-control" placeholder="Password">
