@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<?php include('nav.php'); ?>
+<?php ?>
 
 <div class="container" style="margin-top: 15%;">
 

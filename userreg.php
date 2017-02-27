@@ -13,7 +13,7 @@
   <h1 style="margin-left: 2%;">Thank you!</h1>
   <h3 style="margin-left: 2%;">You have successfully registered!</h3>
   <p style="margin-left: 2%;">Click the button below to sign in into your account</p>
-  <p style="margin-left: 2%;"><a class="btn btn-primary btn-lg" href="login.php" role="button">Sign in</a></p>
+  <p style="margin-left: 2%;"><a class="btn btn-primary btn-lg" href="signin.php" role="button">Sign in</a></p>
 </div>
 
 <?php include('stickyfooter.php'); ?>

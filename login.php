@@ -12,7 +12,10 @@ $row = $results->fetch_assoc();
 
 if ($row) {
 	session_start();
-	$_SESSION["user_level"] = (int)$_SESSION["user_level"];
+	$_SESSION['name'] = $row['name'];
+	$_SESSION['mail'] = $row['mail'];
+	$_SESSION['surname'] = $row['surname'];
+	$_SESSION['user_level'] = (int)$row['user_level'];
 
 	$url = ($_SESSION["user_level"] === 1) ? 'admin.php' : 'member.php';
 	header('Location: '.$url);

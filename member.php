@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_level']) or ($_SESSION['user_level']) !=0) {
+  header("Location: signin.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,15 +30,33 @@
   				<table class="table table-hover" style="width: 100%;">
   					<tr>
   						<td>First Name</td>
-  						<td></td>
+  						<td>
+                <?php
+                if (isset($_SESSION['name'])) {
+                  echo "{$_SESSION['name']}";
+                }
+                ?>      
+              </td>
   					</tr>
   					<tr>
   						<td>Last Name</td>
-  						<td></td>
+  						<td>
+                <?php
+                if (isset($_SESSION['surname'])) {
+                  echo "{$_SESSION['surname']}";
+                }
+                ?>      
+              </td>
   					</tr>
   					<tr>
   						<td>E-mail</td>
-  						<td></td>
+  						<td>
+                <?php
+                if (isset($_SESSION['mail'])) {
+                  echo "{$_SESSION['mail']}";
+                }
+                ?>      
+              </td>
   					</tr>
   				</table>
 			</div>
