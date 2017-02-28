@@ -60,7 +60,7 @@ $conn->close();
   <p style="margin-left: 2%;">Please fill in the form</p>
 </div>
 
-<?php include('nav.php'); ?>
+<?php include('regular_nav.php'); ?>
 
 <form method="post" action="register.php">
   <div class="form-group">

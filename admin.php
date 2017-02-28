@@ -14,7 +14,15 @@ if (!isset($_SESSION['user_level']) or ($_SESSION['user_level']) != 1) {
 </head>
 <body>
 
-<?php include('nav.php'); ?>
+<?php 
+require_once('logged.php');
+if (logged_in()) {
+  include('authenticated_nav.php');
+}
+else{
+  include('regularnav.php');
+}
+?>
 
 <div class="container" style="margin-left: 1%;">
 	<div class="row">

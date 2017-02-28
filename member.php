@@ -14,7 +14,14 @@ if (!isset($_SESSION['user_level']) or ($_SESSION['user_level']) !=0) {
 </head>
 <body>
 
-<?php include('nav.php'); ?>
+<?php 
+if (logged_in()) {
+  include('authenticated_nav.php');
+}
+else{
+  include('regular_nav.php');
+}
+?>
 
 <div class="container" style="margin-left: 1%;">
 	<div class="row">

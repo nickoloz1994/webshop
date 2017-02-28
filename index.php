@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +18,16 @@
 </div>
 
 <?php 
-include('nav.php');
+
 require_once('config.php');
+require_once('logged.php');
+
+if (logged_in()) {
+  include('authenticated_nav.php');
+}
+else{
+  include('regular_nav.php');
+}
 
 $results = $conn->query("SELECT id,title,image FROM books;");
 $rows = $results->fetch_all(MYSQLI_ASSOC);

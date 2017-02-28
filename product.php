@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,18 +17,25 @@
 </div>
 
 <?php 
-include('nav.php'); 
 require_once('config.php');
+require_once('logged.php');
+if (logged_in()) {
+  include('authenticated_nav.php');
+}
+else{
+  include('regular_nav.php');
+}
+
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 if ($conn->connect_error) {
   die("Connection to database failed: ".$conn->connect_error);
 }
-$statment = $conn->prepare(
+$statement = $conn->prepare(
   "SELECT `title`,`isbn`,`price`,`pages`,`language`,`edition`,`author`,`image`
    FROM `books` WHERE `id`= ? ");
-$statment->bind_param("i", $_GET["id"]);
-$statment->execute();
-$results = $statment->get_result();
+$statement->bind_param("i", $_GET["id"]);
+$statement->execute();
+$results = $statement->get_result();
 $row = $results->fetch_assoc();
 ?>
 

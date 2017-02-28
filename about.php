@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +12,15 @@
 </head>
 <body style="background-image: url(img/dev.jpg);">
 
-<?php include('nav.php'); ?>
+<?php 
+require_once('logged.php');
+if (logged_in()) {
+  include('authenticated_nav.php');
+}
+else{
+  include('regular_nav.php');
+}
+?>
 
 <div class="jumbotron" style="background: rgba(204,204,204,0); font-weight: bold;">
 	<div style="margin-left: 3%;">
