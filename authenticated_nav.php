@@ -61,7 +61,9 @@ require_once('config.php');
         </div>
         </div>
         <div class="col-md-6">
-          <button class="btn btn-default" style="position: relative;">Sign out</button>
+          <form action="logout.php">
+            <input type="submit" value="Sign Out" class="btn btn-default">
+          </form>
         </div>
       </div>
     </div><!-- /.navbar-collapse -->
