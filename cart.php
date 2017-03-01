@@ -83,6 +83,8 @@ if($num > 0){
 
 <?php
 	}
+}else{
+	$_SESSION['subtotal'] = 0;
 }
 ?>
 
