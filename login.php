@@ -15,7 +15,8 @@ if ($row) {
 	$_SESSION['username'] = $row['name'];
 	$_SESSION['mail'] = $row['mail'];
 	$_SESSION['surname'] = $row['surname'];
-	$_SESSION['id'] = $row['usrid'];
+	$_SESSION['userid'] = $row['usrid'];
+	$_SESSION['PHPSESSID'] = session_id();
 	$_SESSION['user_level'] = (int)$row['user_level'];
 
 	$url = ($_SESSION["user_level"] === 1) ? 'admin.php' : 'member.php';

@@ -20,7 +20,7 @@ if (logged_in()) {
   include('authenticated_nav.php');
 }
 else{
-  include('regularnav.php');
+  include('regular_nav.php');
 }
 ?>
 

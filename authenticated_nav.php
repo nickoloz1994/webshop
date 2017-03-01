@@ -48,8 +48,8 @@ require_once('config.php');
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <div class="row" style="width: 20%;position: relative;float: right;margin-top: 8px;">
-        <div class="col-md-6">
+      <div class="row" style="width: 25%;position: relative;float: right;margin-top: 8px;">
+        <div class="col-md-3" style="margin-left: 10%;padding: 0;">
           <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hello <?=$_SESSION['username']?>
           <span class="caret"></span></button>
@@ -60,10 +60,15 @@ require_once('config.php');
           </ul>
         </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3" style="position: relative;margin-left: 11%;padding: 0;">
           <form action="logout.php">
             <input type="submit" value="Sign Out" class="btn btn-default">
           </form>
+        </div>
+        <div class="col-md-3" style="width: 15%;position: relative;padding: 0; margin-left: 5%;">
+          <a href="cart.php" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+          </a>
         </div>
       </div>
     </div><!-- /.navbar-collapse -->
