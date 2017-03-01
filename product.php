@@ -26,10 +26,6 @@ else{
   include('regular_nav.php');
 }
 
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-if ($conn->connect_error) {
-  die("Connection to database failed: ".$conn->connect_error);
-}
 $statement = $conn->prepare(
   "SELECT `title`,`isbn`,`price`,`pages`,`language`,`edition`,`author`,`image`
    FROM `books` WHERE `id`= ? ");
@@ -38,12 +34,36 @@ $statement->execute();
 $results = $statement->get_result();
 $row = $results->fetch_assoc();
 ?>
-
 <div>
-<img src="<?=$row["image"]?>" class="img-responsive img-thumbnail" alt="Responsive image" style="position: relative;margin-left: 2%;">
-<span class="label label-success" style="font-size: 24px;position: relative; margin-left: 2%;">Price</span>
-<span class="label label-default" style="font-size: 24px;position: relative; margin-left: 2%; background-color: white; color: black;"><?=$row["price"]?>$</span>
+  <div class="row" >
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <img src="<?=$row["image"]?>" class="img-responsive img-thumbnail" alt="Responsive image" style="position: relative;margin-left: 2%;">
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-top: 8%;">
+      <span class="label label-success" style="font-size: 24px;position: relative; margin-left: 2%;">Price</span>
+      <span class="label label-default" style="font-size: 24px;position: relative; margin-left: 2%; background-color: white; color: black;"><?=$row["price"]?>$</span>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-top: 6%;position: relative; float: right;">
+    <form action="addtocart.php" method="post">
+      <label class="label label-default" style="font-size: 18px;">Qty:</label>
+        <select name="quantity">
+          <?php
+          for ($i=1; $i <= 30; $i++) { 
+          ?>
+          <option><?php echo "{$i}";?></option>
+          <?php
+          }
+          ?>
+        </select>
+      <span class="label label-default" style="font-size: 24px; background-color: white; color: black;">Total:</span>
+      
+        <input type="hidden" name="id" value="<?=$_GET['id']?>">
+        <input type="submit" value="Add to cart" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+      </form>  
+    </div>
+  </div>
 </div>
+
 
 <div class="table-responsive">
   <table class="table table-hover">

@@ -9,8 +9,8 @@
 <footer class="footer" style="position: absolute; right: 0;bottom: 0;left: 0;">
     <div class="container">
         <p><h4 class="text-muted">Get to Know Us</h4></p>
-        <p><h5 class="text-muted">Career</h5></p>
-        <p><h5 class="text-muted">About</h5></p>
+        <p><h5 class="text-muted"><a href="#" style="color: white;">Career</a></h5></p>
+        <p><h5 class="text-muted"><a href="about.php" style="color: white;">About</a></h5></p>
     </div>
 </footer>
 

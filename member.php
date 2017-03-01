@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_level']) or ($_SESSION['user_level']) !=0) {
 <body>
 
 <?php 
+require_once('logged.php');
 if (logged_in()) {
   include('authenticated_nav.php');
 }

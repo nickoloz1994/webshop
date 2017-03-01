@@ -52,9 +52,7 @@
           <button type="button" class="btn btn-default">
             <a href="register.php">Register</a>
           </button>
-          <button type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-          </button>
+          
       	</div>
       </form>
     </div><!-- /.navbar-collapse -->
