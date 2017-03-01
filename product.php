@@ -55,7 +55,7 @@ $row = $results->fetch_assoc();
           }
           ?>
         </select>
-      <span class="label label-default" style="font-size: 24px; background-color: white; color: black;">Total:</span>
+        <span class="label label-default" style="font-size: 24px; background-color: white; color: black;">Total:</span>
       
         <input type="hidden" name="id" value="<?=$_GET['id']?>">
         <input type="submit" value="Add to cart" class="btn btn-warning" style="width: 100%; margin-top: 5%;">

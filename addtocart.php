@@ -3,8 +3,6 @@ session_start();
 
 include('config.php');
 
-
-
 $pr_id = $_POST['id'];
 $qty = $_POST['quantity'];
 
