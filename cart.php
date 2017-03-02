@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config.php');
+
 $stotal = 0;
 $session_id = $_SESSION['PHPSESSID'];
 $stmt = "SELECT * FROM cart INNER JOIN books ON cart.product_id=books.id WHERE cart.session_id='".$session_id."'";
@@ -27,7 +28,10 @@ $num = mysqli_num_rows($result);
 
 <div style="position: relative;float: right;width: 25%;margin-right: 2%;">
 	<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>EUR</label>
-	<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+	<form action="update.php">
+		<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+	</form>
+	
 </div>
 
 <div class="row" style="width: 60%;position: relative; float: left;">
