@@ -26,13 +26,7 @@ $num = mysqli_num_rows($result);
 
 <?php include('authenticated_nav.php'); ?>
 
-<div style="position: relative;float: right;width: 25%;margin-right: 2%;">
-	<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>EUR</label>
-	<form action="update.php">
-		<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
-	</form>
-	
-</div>
+
 
 <div class="row" style="width: 60%;position: relative; float: left;">
 	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -67,15 +61,7 @@ if($num > 0){
 		<span class="label label-info" style="font-size: 16px;"><?=$row['price']?></span>
 	</div>
 	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top: 2%;">
-		<select name="quantity">
-          <?php
-          for ($i=1; $i <= 30; $i++) { 
-          ?>
-          <option><?php echo "{$i}";?></option>
-          <?php
-          }
-          ?>
-        </select>
+		<label><?=$row['quantity'];?></label>
 	</div>
 	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top: 1.3%;">
 		<form action="remove.php" method="post">
@@ -91,6 +77,13 @@ if($num > 0){
 	$_SESSION['subtotal'] = 0;
 }
 ?>
+
+<div style="position: fixed;right: 0;width: 25%;margin-right: 2%;">
+	<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>EUR</label>
+	<form action="update.php">
+		<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+	</form>
+</div>
 
 </body>
 </html>

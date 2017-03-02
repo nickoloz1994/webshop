@@ -1,3 +1,7 @@
+<?php
+$id = $_SESSION['userid'];
+$url = $_SESSION['user_level'] == 1 ? "admin.php?id=$id" : "member.php?id=$id";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +36,7 @@ require_once('config.php');
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Home<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="index.php">Store<span class="sr-only">(current)</span></a></li>
         <li><a href="about.php">About</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
@@ -54,9 +58,8 @@ require_once('config.php');
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hello <?=$_SESSION['username']?>
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
+            <li><a href=<?php echo $url; ?> >Profile</a></li>
+            <li><a href="orders.php">Orders</a></li>
           </ul>
         </div>
         </div>

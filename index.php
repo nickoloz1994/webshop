@@ -30,17 +30,17 @@ else{
 }
 
 $results = $conn->query("SELECT id,title,image FROM books;");
-$rows = $results->fetch_all(MYSQLI_ASSOC);
-$conn->close();
+$sql = "SELECT id,title,image FROM books";
+$result = mysqli_query($conn,$sql);
 
 ?>
 
 <div class="row">
 
 <?php 
-$i = 0;
-while ($i < 1) {
-foreach ($rows as $row ) {
+
+while ($row=mysqli_fetch_array($result)) {
+
 ?>
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
@@ -53,8 +53,6 @@ foreach ($rows as $row ) {
   </div>
 
 <?php
-  }
-  $i++;
 }
 ?>
 </div>

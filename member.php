@@ -40,8 +40,8 @@ else{
   						<td>First Name</td>
   						<td>
                 <?php
-                if (isset($_SESSION['name'])) {
-                  echo "{$_SESSION['name']}";
+                if (isset($_SESSION['username'])) {
+                  echo "{$_SESSION['username']}";
                 }
                 ?>      
               </td>

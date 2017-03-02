@@ -20,8 +20,7 @@ if ($row) {
 	$_SESSION['subtotal'] = 0;
 	$_SESSION['user_level'] = (int)$row['user_level'];
 
-	$url = ($_SESSION["user_level"] === 1) ? 'admin.php' : 'member.php';
-	header('Location: '.$url);
+	header('Location: index.php');
 	$conn->close();
 }
 else{

@@ -24,6 +24,6 @@ if ($num > 0) {
 	mysqli_query($conn,$sql) or die("Failed");
 }
 
-header("Location:cart.php");
+header("Location: cart.php");
 echo $num;
 ?>
