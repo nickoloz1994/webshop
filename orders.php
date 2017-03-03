@@ -18,6 +18,16 @@ $result = mysqli_query($conn,$sql);
 
 <div class="container-fluid" style="width: 60%;">
 	<h1>Orders</h1>
+	<a href="index.php">
+		<button type="button" class="btn btn-default" aria-label="Left Align">
+  			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+		</button>
+	</a>
+	<a href="member.php?id=<?=$user_id?>">
+		<button type="button" class="btn btn-default" aria-label="Left Align">
+  			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		</button>
+	</a>
 	<?php
 	while($row=mysqli_fetch_array($result)){
 		?>
