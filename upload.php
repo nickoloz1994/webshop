@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,7 @@ $connection->close();
 
 ?>
 
-<?php include('nav.php'); ?>
+<?php include('authenticated_nav.php'); ?>
 
 <form method="post" action="upload.php">
   <div class="form-group">

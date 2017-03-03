@@ -80,7 +80,7 @@ if($num > 0){
 
 <div style="position: fixed;right: 0;width: 25%;margin-right: 2%;">
 	<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>EUR</label>
-	<form action="update.php">
+	<form action="place_order.php">
 		<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
 	</form>
 </div>
