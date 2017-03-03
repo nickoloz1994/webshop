@@ -4,32 +4,46 @@ session_start();
 require('config.php');
 
 $cust_id = $_SESSION['userid'];
-if (isset($_POST['submit'])) {
-	$stmt = $conn->prepare(
-	"INSERT INTO shipp_address(
-		`usr_id`,
-		`name`,
-		`address1`,
-		`address2`,
-		`country`,
-		`state`,
-		`city`,
-		`zip`,
-		`phone`)
-	VALUES (?,?,?,?,?,?,?,?,?)");
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  if (isset($_POST['submit'])) {
+  	$stmt = $conn->prepare(
+  	"INSERT INTO shipp_address(
+  		`usr_id`,
+  		`name`,
+  		`address1`,
+  		`address2`,
+  		`country`,
+  		`state`,
+  		`city`,
+  		`zip`,
+  		`phone`)
+  	VALUES (?,?,?,?,?,?,?,?,?)");  
 
-	$stmt->bind_param("sssssssss",	
-		$cust_id,
-		$_POST['fullname'],
-		$_POST['address1'],
-		$_POST['address2'],
-		$_POST['country2'],
-		$_POST['state'],
-		$_POST['city'],
-		$_POST['zip'],
-		$_POST['phone']);
+  	$stmt->bind_param("sssssssss",	
+  		$cust_id,
+  		$_POST['fullname'],
+  		$_POST['address1'],
+  		$_POST['address2'],
+  		$_POST['country2'],
+  		$_POST['state'],
+  		$_POST['city'],
+  		$_POST['zip'],
+  		$_POST['phone']);
 
-	$stmt->execute();
+  	$stmt->execute();
+  }else{
+    if (isset($_POST['cancel'])) {
+      $id = $_SESSION['userid'];
+      $ord_id = $_SESSION['order_id'];
+      $sql = "DELETE FROM orders WHERE cust_id='".$id."'";
+      mysqli_query($conn,$sql);
+
+      $sql = "DELETE FROM order_details WHERE order_id='".$ord_id."'";
+      mysqli_query($conn,$sql);
+
+      header("Location:index.php");
+    }
+  }
 }
 
 $conn->close();
@@ -96,6 +110,9 @@ $conn->close();
   		</div>
   		<button type="submit" class="btn btn-warning" style="margin-left: 2%;margin-top: 0.5%; margin-bottom: 1%; width: 30%;" name="submit">Proceed to payment</button>
 	</form>
+  <form action="shippingaddress.php" method="post">
+        <button type="submit" class="btn btn-warning" style="margin-left: 2%;margin-top: 0.5%; margin-bottom: 1%; width: 30%;" name="cancel">Cancel</button>
+      </form>
 </div>
 
 </body>

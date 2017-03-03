@@ -12,6 +12,7 @@ $sql = "SELECT MAX(order_id) AS last_id FROM orders";
 $res = mysqli_query($conn,$sql) or die("select from orders failed");
 $row = mysqli_fetch_array($res);
 $id = $row['last_id'];
+$_SESSION['order_id'] = $id;
 
 $session = $_SESSION['PHPSESSID'];
 $sql = "SELECT * FROM cart WHERE session_id='".$session."'";
