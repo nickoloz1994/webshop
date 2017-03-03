@@ -3,9 +3,9 @@ require('config.php');
 session_start();
 
 $customer_id = $_SESSION['userid'];
+$total = $_SESSION['subtotal'];
 
-
-$sql = "INSERT INTO orders(cust_id,`date`) VALUES($customer_id,DATE_FORMAT(NOW(),'%b %d %Y %h:%i %p')";
+$sql = "INSERT INTO orders(cust_id,`date`,total) VALUES($customer_id,DATE_FORMAT(NOW(),'%b %d %Y %h:%i %p'),$total)";
 mysqli_query($conn,$sql) or die("orders insert failed");
 
 $sql = "SELECT MAX(order_id) AS last_id FROM orders";

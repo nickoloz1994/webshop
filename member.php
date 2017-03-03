@@ -30,6 +30,7 @@ else{
 			<ul class="nav nav-pills nav-stacked">
   				<li role="presentation" class="active"><a href="index.php">Account Details</a></li>
   				<li role="presentation"><a href="upload.php">Payment Details</a></li>
+          <li role="presentation"><a href="orders.php">Orders</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-6 col-md-4">
