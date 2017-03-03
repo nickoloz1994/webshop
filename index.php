@@ -21,6 +21,7 @@ session_start();
 
 require_once('config.php');
 require_once('logged.php');
+include('pager.php');
 
 if (logged_in()) {
   include('authenticated_nav.php');
@@ -29,35 +30,55 @@ else{
   include('regular_nav.php');
 }
 
+$pager = new Pager();
+
 $results = $conn->query("SELECT id,title,image FROM books;");
-$sql = "SELECT id,title,image FROM books";
-$result = mysqli_query($conn,$sql);
+
+$totalRecords = $results->num_rows;
+$pager->total = $totalRecords;
+$totalPages = ceil($totalRecords/$pager->itemsPerPage);
+$pager->pages = $totalPages;
+$pager->paginate();
+$i = 0;
+if ($i <= $totalPages) {
+  $offset = ($pager->currentPage-1)*$pager->itemsPerPage;
+  $limit = $pager->itemsPerPage;
+
+  $sql = "SELECT * FROM books LIMIT $offset, $limit";
+  $result = mysqli_query($conn, $sql);
 
 ?>
 
 <div class="row">
 
-<?php 
+  <?php 
 
-while ($row=mysqli_fetch_array($result)) {
+    while ($row=mysqli_fetch_array($result)) {
 
-?>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="<?=$row["image"]?>" alt="...">
-      <div class="caption">
-        <h4><?=$row["title"]?></h4>
-        <p><a href="product.php?id=<?=$row['id']?>" class="btn btn-primary" role="button">More...</a>
+  ?>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="<?=$row["image"]?>" alt="...">
+        <div class="caption">
+          <h4><?=$row["title"]?></h4>
+          <p><a href="product.php?id=<?=$row['id']?>" class="btn btn-primary" role="button">More...</a>
+         </div>
       </div>
     </div>
-  </div>
 
-<?php
-}
-?>
+  <?php
+    } //closing while block
+  ?>
 </div>
+<?php
+  $i++;
+}//closing if block
 
-<?php include('footer.php'); ?>
+echo $pager->pageNumbers();
+
+include('footer.php'); 
+
+?>
 
 </body>
 </html>
