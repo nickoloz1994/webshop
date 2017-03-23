@@ -38,7 +38,7 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" action="search.php" method="post">
+      <form class="navbar-form navbar-left" action="search.php" method="get">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="searchinput">
         </div>

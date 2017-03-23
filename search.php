@@ -18,7 +18,6 @@
 session_start();
 require('config.php');
 require_once('logged.php');
-include('pager.php');
 
 if (logged_in()) {
   include('authenticated_nav.php');
@@ -27,31 +26,21 @@ else{
   include('regular_nav.php');
 }
 
-if (isset($_POST['search'])) {
-	$string = $_POST['searchinput'];
+if (isset($_GET['search'])) {
+	
+	$string = $_GET['searchinput'];
+
 	$sql = "SELECT * FROM books WHERE title LIKE '%".$string."%' OR author LIKE '%".$string."%'";
 	$result = mysqli_query($conn, $sql);
 	$num = mysqli_num_rows($result);
-
+	
 	if ($num > 0) {
-		$pager = new Pager();
-		$pager->total = $num;
-		$pager->pages = ceil($num/$pager->itemsPerPage);
-		$pager->paginate();
-		$i = 0;
-		if ($i <= $pager->pages) {
-  			$offset = ($pager->currentPage-1)*$pager->itemsPerPage;
-  			$limit = $pager->itemsPerPage;
-
-  			$sql = "SELECT * FROM books WHERE title LIKE '%".$string."%' OR author LIKE '%".$string."%' LIMIT $offset, $limit";
-  			$results = mysqli_query($conn, $sql);
-
 ?>
 
 <div class="row">
 
 	<?php
-	while ($row=mysqli_fetch_array($results)) {
+	while ($row=mysqli_fetch_array($result)) {
 	?>
 
 	<div class="col-sm-6 col-md-4">
@@ -70,16 +59,18 @@ if (isset($_POST['search'])) {
 
 <div class="text-center">
 <?php
-  $i++;
-}//close if block
-echo $pager->pageNumbers();
+	}//close if block
+	else{ 
+?>
+		<div class="alert alert-danger" role="alert"><h4>No results found</h4></div>
+<?php
+	}
+}
 ?>
 
 </div>
 
-<?php	
-	}
-}
+<?php
 include('footer.php');
 ?>
 

@@ -46,7 +46,7 @@ require_once('config.php');
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" method="post" action="search.php">
+      <form class="navbar-form navbar-left" method="get" action="search.php">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="searchinput">
         </div>
