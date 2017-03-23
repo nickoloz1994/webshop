@@ -38,11 +38,11 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left">
+      <form class="navbar-form navbar-left" action="search.php" method="post">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" name="searchinput">
         </div>
-        <button type="submit" class="btn btn-default">Search</button>
+        <button type="submit" class="btn btn-default" name="search">Search</button>
       </form>
       <form class="navbar-form navbar-right" action="login.php" method="post">
       	<div class="form-group">

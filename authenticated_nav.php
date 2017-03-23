@@ -46,11 +46,11 @@ require_once('config.php');
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left">
+      <form class="navbar-form navbar-left" method="post" action="search.php">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" name="searchinput">
         </div>
-        <button type="submit" class="btn btn-default">Search</button>
+        <button type="submit" class="btn btn-default" name="search">Search</button>
       </form>
       <div class="row" style="width: 25%;position: relative;float: right;margin-top: 8px;">
         <div class="col-md-3" style="margin-left: 10%;padding: 0;">
