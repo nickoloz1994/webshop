@@ -1,4 +1,4 @@
-<?php ?>
+<?php  ?>
 
 <html>
 <head>
@@ -46,9 +46,7 @@
       </form>
       <form class="navbar-form navbar-right" action="login.php" method="post">
       	<div class="form-group">
-      		<input type="email" name="usrmail" class="form-control" placeholder="E-mail">
-      		<input type="Password" name="usrpass" class="form-control" placeholder="Password">
-      		<button type="submit" class="btn btn-default">Login</button>
+      		<button type="submit" class="btn btn-default"><a href="signin.php">Login</a></button>
           <button type="button" class="btn btn-default">
             <a href="register.php">Register</a>
           </button>
