@@ -70,14 +70,19 @@ if ($i <= $totalPages) {
     } //closing while block
   ?>
 </div>
+
+<div class="text-center">
+
 <?php
   $i++;
 }//closing if block
-
 echo $pager->pageNumbers();
+?>
 
+</div>
+
+<?php
 include('footer.php'); 
-
 ?>
 
 </body>
