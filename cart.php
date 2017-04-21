@@ -1,10 +1,14 @@
 <?php
 session_start();
+require('logged.php');
+if (logged_in()) {
+	
+
 include('config.php');
 
 $stotal = 0;
 $session_id = $_SESSION['PHPSESSID'];
-$stmt = "SELECT * FROM cart INNER JOIN books ON cart.product_id=books.id WHERE cart.session_id='".$session_id."'";
+$stmt = "SELECT * FROM nick_cart INNER JOIN nick_books ON nick_cart.product_id=nick_books.id WHERE nick_cart.session_id='".$session_id."'";
 $result = mysqli_query($conn,$stmt);
 $num = mysqli_num_rows($result);
 ?>
@@ -21,69 +25,72 @@ $num = mysqli_num_rows($result);
 <body>
 
 <div class="page-header">
-  <h1 style="margin-left: 2%;">Experience the best <small>We are quality</small></h1>
+  <h1 style="margin-left: 2%;">IT Book Shop</h1>
 </div>
 
 <?php include('authenticated_nav.php'); ?>
 
-
-
-<div class="row" style="width: 60%;position: relative; float: left;">
-	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-		<label style="font-size: 26px;margin-left: 5%;">Shopping cart</label>
+<div class="container-fluid">
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		<?php
+			if($num > 0){
+			while($row = mysqli_fetch_assoc($result)){
+				$stotal += $row['quantity'] * $row['price'];
+				$_SESSION['subtotal'] = $stotal;
+		?>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<table class="table table-bordered" style="width: 100%;">
+				<tbody>
+					<tr>
+						<td rowspan="4" class="mytd2">
+							<img class="img-responsive" src="<?=$row['image']?>" alt="<?=$row['title']?>" >
+						</td>
+						<td class="mytd">
+							Title: <label style="font-size: 16px;"><?=$row['title']?></label>
+						</td>
+					</tr>
+					<tr>
+						<td class="mytd">
+							Quantity: <label><?=$row['quantity'];?></label>
+						</td>
+					</tr>
+					<tr>
+						<td class="mytd">
+							Price: <span class="label label-info" style="font-size: 16px;"><?=$row['price']?></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="mytd">
+							<form action="remove.php" method="post">
+								<input type="hidden" name="pr_id" value="<?=$row['product_id']?>">
+								<input type="submit" name="remove" class="btn btn-danger" style="font-size: 12px;" value="Remove">
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<?php
+			}
+		}else{
+			$_SESSION['subtotal'] = 0;
+		}
+		?>
 	</div>
-	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-		
+	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="float: right;">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>USD</label>
+			<form action="place_order.php">
+				<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+			</form>
+		</div>
 	</div>
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 1%;">
-		<label>Price</label>
-	</div>
-	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top: 1%;">
-		<label>Quantity</label>
-	</div>
-</div>
-
-<?php
-if($num > 0){
-	while($row = mysqli_fetch_assoc($result)){
-		$stotal += $row['quantity'] * $row['price'];
-		$_SESSION['subtotal'] = $stotal;
-?>
-
-<div class="row" style="width: 60%;position: relative; float: left;margin-top: 1%;">
-	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-		<img class="img-responsive" src="<?=$row['image']?>" alt="<?=$row['title']?>" style="max-height: 40%;max-width: 40%;margin-left: 40%;">
-	</div>
-	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-top: 2%;">
-		<label style="font-size: 16px;display: inline-block;max-width: 100%;word-wrap: normal;"><?=$row['title']?></label>
-	</div>
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 2%;">
-		<span class="label label-info" style="font-size: 16px;"><?=$row['price']?></span>
-	</div>
-	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top: 2%;">
-		<label><?=$row['quantity'];?></label>
-	</div>
-	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top: 1.3%;">
-		<form action="remove.php" method="post">
-			<input type="hidden" name="pr_id" value="<?=$row['product_id']?>">
-			<input type="submit" name="remove" class="btn btn-danger" style="font-size: 12px;" value="Remove">
-		</form>
-	</div>
-</div>
-
-<?php
-	}
-}else{
-	$_SESSION['subtotal'] = 0;
-}
-?>
-
-<div style="position: fixed;right: 0;width: 25%;margin-right: 2%;">
-	<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>EUR</label>
-	<form action="place_order.php">
-		<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
-	</form>
 </div>
 
 </body>
 </html>
+<?php
+} else {
+	header('Location:signin.php');
+}
+?>

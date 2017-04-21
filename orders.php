@@ -1,9 +1,12 @@
 <?php
 session_start();
+require('logged.php');
+if (logged_in()) {
+
 require('config.php');
 $user_id = $_SESSION['userid'];
 
-$sql = "SELECT * FROM order_details JOIN orders ON orders.order_id=order_details.order_id JOIN books ON books.id=order_details.product_id WHERE orders.cust_id='".$user_id."'";
+$sql = "SELECT * FROM nick_order_details JOIN nick_orders ON nick_orders.order_id=nick_order_details.order_id JOIN nick_books ON nick_books.id=nick_order_details.product_id WHERE nick_orders.cust_id='".$user_id."'";
 $result = mysqli_query($conn,$sql);
 
 ?>
@@ -54,3 +57,8 @@ $result = mysqli_query($conn,$sql);
 
 </body>
 </html>
+<?php 
+} else{
+	header('Location:signin.php');
+}
+?>

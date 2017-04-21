@@ -15,7 +15,7 @@ $failed = false;
 
 if (isset($_POST['login'])) {
 $statement = $conn->prepare(
-  "SELECT * FROM users WHERE mail = ? AND password = PASSWORD(?)");
+  "SELECT * FROM nick_users WHERE mail = ? AND password = PASSWORD(?)");
 
 $statement->bind_param("ss", $_POST["usrmail"], $_POST["usrpass"]);
 $statement->execute();

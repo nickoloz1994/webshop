@@ -27,7 +27,7 @@ if ($connection->connect_error) {
 }
 
 $statement = $connection->prepare(
-  "INSERT INTO `books`(
+  "INSERT INTO `nick_books`(
     `isbn`,
     `title`,
     `price`,

@@ -14,7 +14,7 @@ session_start();
 <body>
 
 <div class="page-header">
-  <h1 style="margin-left: 2%;">Experience the best <small>We are quality</small></h1>
+  <h1 style="margin-left: 2%;">IT Book Shop</h1>
 </div>
 
 <?php 
@@ -32,7 +32,7 @@ else{
 
 $pager = new Pager();
 
-$results = $conn->query("SELECT id,title,image FROM books;");
+$results = $conn->query("SELECT id,title,image FROM nick_books;");
 
 $totalRecords = $results->num_rows;
 $pager->total = $totalRecords;
@@ -44,7 +44,7 @@ if ($i <= $totalPages) {
   $offset = ($pager->currentPage-1)*$pager->itemsPerPage;
   $limit = $pager->itemsPerPage;
 
-  $sql = "SELECT * FROM books LIMIT $offset, $limit";
+  $sql = "SELECT * FROM nick_books LIMIT $offset, $limit";
   $result = mysqli_query($conn, $sql);
 
 ?>

@@ -30,27 +30,19 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php">Store<span class="sr-only">(current)</span></a></li>
         <li><a href="about.php">About</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Books</a></li>
-            <li><a href="#">Laptops</a></li>
-          </ul>
-        </li>
       </ul>
       <form class="navbar-form navbar-left" action="search.php" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" name="searchinput">
+            <input type="text" class="form-control" placeholder="Search" name="searchinput">
+            <button type="submit" class="btn btn-default" name="search">Search</button>
         </div>
-        <button type="submit" class="btn btn-default" name="search">Search</button>
       </form>
-      <form class="navbar-form navbar-right" action="login.php" method="post">
-      	<div class="form-group">
+      <form class="navbar-form navbar-right" action="signin.php" method="post">
+      	<div class="form-group" style="margin-right: 0;">
       		<button type="submit" class="btn btn-default"><a href="signin.php">Login</a></button>
           <button type="button" class="btn btn-default">
             <a href="register.php">Register</a>
           </button>
-          
       	</div>
       </form>
     </div><!-- /.navbar-collapse -->
@@ -58,4 +50,4 @@
 </nav>
 
 </body>
-</html>
+</html>  

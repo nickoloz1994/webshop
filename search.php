@@ -10,7 +10,7 @@
 <body>
 
 <div class="page-header">
-  <h1 style="margin-left: 2%;">Experience the best <small>We are quality</small></h1>
+  <h1 style="margin-left: 2%;">Experience the best Book Shop</h1>
 </div>
 
 <?php 
@@ -30,7 +30,7 @@ if (isset($_GET['search'])) {
 	
 	$string = $_GET['searchinput'];
 
-	$sql = "SELECT * FROM books WHERE title LIKE '%".$string."%' OR author LIKE '%".$string."%'";
+	$sql = "SELECT * FROM nick_books WHERE title LIKE '%".$string."%' OR author LIKE '%".$string."%'";
 	$result = mysqli_query($conn, $sql);
 	$num = mysqli_num_rows($result);
 	

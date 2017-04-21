@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 }
 
 $statement = $conn->prepare(
-  "INSERT INTO `users`(
+  "INSERT INTO `nick_users`(
     `name`,
     `surname`,
     `mail`,

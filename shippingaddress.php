@@ -7,7 +7,7 @@ $cust_id = $_SESSION['userid'];
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   if (isset($_POST['submit'])) {
   	$stmt = $conn->prepare(
-  	"INSERT INTO shipp_address(
+  	"INSERT INTO nick_shipp_address(
   		`usr_id`,
   		`name`,
   		`address1`,
@@ -35,10 +35,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (isset($_POST['cancel'])) {
       $id = $_SESSION['userid'];
       $ord_id = $_SESSION['order_id'];
-      $sql = "DELETE FROM orders WHERE cust_id='".$id."'";
+      $sql = "DELETE FROM nick_orders WHERE cust_id='".$id."'";
       mysqli_query($conn,$sql);
 
-      $sql = "DELETE FROM order_details WHERE order_id='".$ord_id."'";
+      $sql = "DELETE FROM nick_order_details WHERE order_id='".$ord_id."'";
       mysqli_query($conn,$sql);
 
       header("Location:index.php");

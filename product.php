@@ -13,7 +13,7 @@ session_start();
 <body>
 
 <div class="page-header">
-  <h1 style="margin-left: 2%;">Experience the best <small>We are quality</small></h1>
+  <h1 style="margin-left: 2%;">IT Book Shop</h1>
 </div>
 
 <?php 
@@ -28,23 +28,29 @@ else{
 
 $statement = $conn->prepare(
   "SELECT `title`,`isbn`,`price`,`pages`,`language`,`edition`,`author`,`image`
-   FROM `books` WHERE `id`= ? ");
+   FROM `nick_books` WHERE `id`= ? ");
 $statement->bind_param("i", $_GET["id"]);
 $statement->execute();
 $results = $statement->get_result();
 $row = $results->fetch_assoc();
 ?>
-<div>
+<div style="margin-bottom: 1%;">
   <div class="row" >
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
       <img src="<?=$row["image"]?>" class="img-responsive img-thumbnail" alt="Responsive image" style="position: relative;margin-left: 2%;">
     </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-top: 8%;">
-      <span class="label label-success" style="font-size: 24px;position: relative; margin-left: 2%;">Price</span>
-      <span class="label label-default" style="font-size: 24px;position: relative; margin-left: 2%; background-color: white; color: black;"><?=$row["price"]?>$</span>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" style="margin-top: 8%;">
+      
+        <h4><span class="label label-success" >Price <?=$row["price"]?>$</span></h4>
+      
+      
     </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-top: 6%;position: relative; float: right;">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="margin-top: 6%;position: relative; float: right;">
+    <?php
+      if (logged_in()) {
+    ?>
     <form action="addtocart.php" method="post">
+    <div class="form-group">
       <label class="label label-default" style="font-size: 18px;">Qty:</label>
         <select name="quantity">
           <?php
@@ -59,7 +65,9 @@ $row = $results->fetch_assoc();
       
         <input type="hidden" name="id" value="<?=$_GET['id']?>">
         <input type="submit" value="Add to cart" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
-      </form>  
+        </div>
+      </form> 
+      <?php } ?> 
     </div>
   </div>
 </div>

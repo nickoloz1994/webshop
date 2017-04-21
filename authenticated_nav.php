@@ -38,42 +38,34 @@ require_once('config.php');
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php">Store<span class="sr-only">(current)</span></a></li>
         <li><a href="about.php">About</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Books</a></li>
-            <li><a href="#">Laptops</a></li>
-          </ul>
-        </li>
       </ul>
-      <form class="navbar-form navbar-left" method="get" action="search.php">
+      <form class="navbar-form navbar-left" action="search.php" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" name="searchinput">
+            <input type="text" class="form-control" placeholder="Search" name="searchinput">
+            <button type="submit" class="btn btn-default" name="search">Search</button>
         </div>
-        <button type="submit" class="btn btn-default" name="search">Search</button>
       </form>
-      <div class="row" style="width: 25%;position: relative;float: right;margin-top: 8px;">
-        <div class="col-md-3" style="margin-left: 10%;padding: 0;">
+      <form class="navbar-form navbar-right" action="signin.php" method="post">
+        <div class="form-group" style="margin-right: 0;">
           <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hello <?=$_SESSION['username']?>
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href=<?php echo $url; ?> >Profile</a></li>
-            <li><a href="orders.php">Orders</a></li>
-          </ul>
-        </div>
-        </div>
-        <div class="col-md-3" style="position: relative;margin-left: 11%;padding: 0;">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hello <?=$_SESSION['username']?>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href=<?php //echo $url; ?> >Profile</a></li>
+              <li><a href="orders.php">Orders</a></li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-default">
+            <a href="register.php">Register</a>
+          </button>
           <form action="logout.php">
             <input type="submit" value="Sign Out" class="btn btn-default">
           </form>
-        </div>
-        <div class="col-md-3" style="width: 15%;position: relative;padding: 0; margin-left: 5%;">
           <a href="cart.php" class="btn btn-default" aria-label="Left Align">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
           </a>
         </div>
-      </div>
+      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

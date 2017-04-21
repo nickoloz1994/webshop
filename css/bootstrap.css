@@ -2550,8 +2550,8 @@ output {
   color: #555;
 }
 .form-control {
-  display: block;
-  width: 100%;
+  /*display: block;*/
+  width: 70%;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -3522,6 +3522,7 @@ tbody.collapse.in {
 .dropup,
 .dropdown {
   position: relative;
+  display: inline;
 }
 .dropdown-toggle:focus {
   outline: 0;
@@ -4375,13 +4376,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-form {
-  padding: 10px 15px;
+  /*padding: 10px 15px;*/
   margin-top: 8px;
   margin-right: -15px;
   margin-bottom: 8px;
   margin-left: -15px;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  /*border-top: 0px solid transparent;
+  border-bottom: 0px solid transparent;*/
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
 }
@@ -6789,3 +6790,11 @@ a:link {
   text-decoration: none;
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.mytd {
+  width: 75%;
+}
+
+.mytd2 {
+  width: 25%;
+}
