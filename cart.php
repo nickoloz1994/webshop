@@ -42,7 +42,7 @@ $num = mysqli_num_rows($result);
 			<table class="table table-bordered" style="width: 100%;">
 				<tbody>
 					<tr>
-						<td rowspan="4" class="mytd2">
+						<td rowspan="4" class="mytd2" style="vertical-align: middle;">
 							<img class="img-responsive" src="<?=$row['image']?>" alt="<?=$row['title']?>" >
 						</td>
 						<td class="mytd">
@@ -56,7 +56,7 @@ $num = mysqli_num_rows($result);
 					</tr>
 					<tr>
 						<td class="mytd">
-							Price: <span class="label label-info" style="font-size: 16px;"><?=$row['price']?></span>
+							Price: <span class="label label-default" style="font-size: 16px;"><?=$row['price']?> USD</span>
 						</td>
 					</tr>
 					<tr>
@@ -77,9 +77,9 @@ $num = mysqli_num_rows($result);
 		}
 		?>
 	</div>
-	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="float: right;">
+	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="float: right;margin-bottom: 1%;">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?>USD</label>
+			<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?> USD</label>
 			<form action="place_order.php">
 				<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
 			</form>

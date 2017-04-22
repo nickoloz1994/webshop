@@ -51,7 +51,7 @@ require_once('config.php');
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hello <?=$_SESSION['username']?>
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <li><a href=<?php //echo $url; ?> >Profile</a></li>
+              <li><a href=<?php echo $url; ?> >Profile</a></li>
               <li><a href="orders.php">Orders</a></li>
             </ul>
           </div>
