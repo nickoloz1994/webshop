@@ -106,7 +106,5 @@ $connection->close();
   <button type="submit" class="btn btn-default" style="margin-left: 2%;margin-top: 0.5%; margin-bottom: 1%;" name="submit">Add Item</button>
 </form>
 
-<?php include('footer.php'); ?>
-
 </body>
 </html>

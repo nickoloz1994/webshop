@@ -51,7 +51,7 @@ $row = $results->fetch_assoc();
     ?>
     <form action="addtocart.php" method="post">
     <div class="form-group">
-      <label class="label label-default" style="font-size: 18px;">Qty:</label>
+      <label class="label label-success" style="font-size: 18px;">Qty:</label>
         <select name="quantity">
           <?php
           for ($i=1; $i <= 30; $i++) { 
@@ -101,8 +101,6 @@ $row = $results->fetch_assoc();
   </tr>
   </table>
 </div>
-
-<?php include('footer.php'); ?>
 
 </body>
 </html>

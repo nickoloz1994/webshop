@@ -72,8 +72,5 @@ else{
 	</div>
 </div>
 
-
-<?php include('stickyfooter.php'); ?>
-
 </body>
 </html>

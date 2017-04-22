@@ -16,7 +16,5 @@
   <p style="margin-left: 2%;"><a class="btn btn-primary btn-lg" href="signin.php" role="button">Sign in</a></p>
 </div>
 
-<?php include('stickyfooter.php'); ?>
-
 </body>
 </html>

@@ -43,7 +43,6 @@ else{
 $conn->close();
 
 ?>
-
 <div class="container" style="margin-top: 15%;">
       <form action="signin.php" method="post">
         <?php
@@ -53,13 +52,16 @@ $conn->close();
         <?php
         }
         ?>
-        <h2 style="text-align: center;">Please sign in</h2>
-        <input type="email" name="usrmail" class="form-control" placeholder="Email address" required autofocus style="width: 40%; margin: auto;"><br>
-        <input type="password" name="usrpass" class="form-control" placeholder="Password" required style="width: 40%; margin: auto;"><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login" style="width: 40%; margin-left: auto; margin-right: auto;">Sign in</button>
+        <div class="form-group" style="width: 60%;margin: auto;">
+        <h2 style="text-align: center;">Login</h2>
+        <input type="email" name="usrmail" class="form-control" placeholder="Email address" required autofocus style="min-width: 100%; margin: auto;"><br><br>
+        <input type="password" name="usrpass" class="form-control" placeholder="Password" required style="min-width: 100%; margin: auto;"><br><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login" style="min-width: 100%; margin-left: auto; margin-right: auto;">Sign in</button>
+        </div>
       </form>
+</div>
 
-    </div>
+
 
 </body>
 </html>

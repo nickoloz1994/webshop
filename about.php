@@ -10,7 +10,7 @@ session_start();
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<title>About My Store</title>
 </head>
-<body style="background-image: url(img/dev.jpg);">
+<body style="background-image: url(img/dev.jpg); background-size: cover; background-repeat: no-repeat;">
 
 <?php 
 require_once('logged.php');
@@ -29,8 +29,6 @@ else{
   		<p><h3>Hope you will enjoy the experience</h3></p>
 	</div>
 </div>
-
-<?php include('stickyfooter.php'); ?>
 
 </body>
 </html>
