@@ -15,6 +15,7 @@ $result = mysqli_query($conn,$sql);
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 	<title>Orders</title>
 </head>
 <body>
