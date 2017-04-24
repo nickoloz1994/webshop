@@ -16,7 +16,6 @@ $url = $_SESSION['user_level'] == 1 ? "admin.php?id=$id" : "member.php?id=$id";
 
 <?php 
 require_once('config.php');
-
 ?>
 
 <nav class="navbar navbar-default">
@@ -46,7 +45,7 @@ require_once('config.php');
             <button type="submit" class="btn btn-default" name="search">Search</button>
         </div>
       </form>
-      <form class="navbar-form navbar-right" action="signin.php" method="post">
+      <form class="navbar-form navbar-right">
         <div class="form-group" style="margin-right: 0;">
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hello <?=$_SESSION['username']?>
@@ -55,17 +54,14 @@ require_once('config.php');
               <li><a href=<?php echo $url; ?> >Profile</a></li>
               <li><a href="orders.php">Orders</a></li>
             </ul>
-          </div>
-          <button type="button" class="btn btn-default">
-            <a href="register.php">Register</a>
-          </button>
-          <form action="logout.php">
-            <input type="submit" value="Sign Out" class="btn btn-default">
-          </form>
-          <a href="cart.php" class="btn btn-default" aria-label="Left Align">
+          </div>          
+        </div>
+      </form>
+      <form class="navbar-form navbar-right" action="logout.php">
+        <input type="submit" value="Sign Out" class="btn btn-default">
+        <a href="cart.php" class="btn btn-default" aria-label="Left Align">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
           </a>
-        </div>
       </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
