@@ -1,77 +1,75 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_level']) or ($_SESSION['user_level']) != 1) {
-  header("Location: signin.php");
-  exit();
-}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-	<title>Admin</title>
-</head>
-<body>
+<?php include('top.php'); ?>
 
-<?php 
-require_once('logged.php');
-if (logged_in()) {
-  include('authenticated_nav.php');
-}
-else{
-  include('regular_nav.php');
-}
-?>
+<!-- Page Content -->
+    <div class="container">
 
-<div class="container" style="margin-left: 1%;">
-	<div class="row">
-		<div class="col-sm-6 col-md-4">
-			<ul class="nav nav-pills nav-stacked">
-  				<li role="presentation" class="active"><a href="upload.php">Add Items</a></li>
-  				<li role="presentation"><a href="#">Change Account Details</a></li>
-			</ul>
-		</div>
-		<div class="col-sm-6 col-md-4">
-			<img src="img/admin.png" class="img-responsive img-thumbnail" alt="Admin image" style="position: relative;margin-left: 2%;">
-			<div class="table-responsive" style="margin-top: 1.5%; width: 100%;">
-  				<table class="table table-hover" style="width: 100%;">
-  					<tr>
-  						<td>First Name</td>
-  						<td>
-                <?php
-                if (isset($_SESSION['username'])) {
-                  echo "{$_SESSION['username']}";
-                }
-                ?>      
-              </td>
-  					</tr>
-  					<tr>
-  						<td>Last Name</td>
-  						<td>
-                <?php
-                if (isset($_SESSION['surname'])) {
-                  echo "{$_SESSION['surname']}";
-                }
-                ?>      
-              </td>
-  					</tr>
-  					<tr>
-  						<td>E-mail</td>
-  						<td>
-                <?php
-                if (isset($_SESSION['mail'])) {
-                  echo "{$_SESSION['mail']}";
-                }
-                ?>      
-              </td>
-  					</tr>
-  				</table>
-			</div>
-		</div>
-	</div>
-</div>
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Member Page</h1>
+            </div>
+        </div>
+        <!-- /.row -->
 
-</body>
-</html>
+        <div class="row">
+        	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        		<ul class="nav nav-stacked">
+        			<li>
+        				<a href="additem.php"><span class="glyphicon glyphicon-upload"></span> Add new items</a>
+        			</li>
+        			<li>
+        				<a href="#"><span class="glyphicon glyphicon-cog"></span> Change account settings</a>
+        			</li>
+        			<li>
+        				<a href="#">Random thing</a>
+        			</li>
+        		</ul>
+        	</div>
+        	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        		<div class="row">
+        			<img src="img/admin.png" class="img-thumbnail img-responsive">
+        		</div>
+        		<div class="row">
+        			<table class="table table-hover table-responsive">
+        				<tr>
+  							<td>
+  								First Name
+  							</td>
+  							<td>
+                				<?php
+                				if (isset($_SESSION['username'])) {
+                				  echo "{$_SESSION['username']}";
+                				}
+                				?>      
+              				</td>
+  						</tr>
+  						<tr>
+  							<td>
+  								Last Name
+  							</td>
+  							<td>
+                				<?php
+                				if (isset($_SESSION['surname'])) {
+                			  	echo "{$_SESSION['surname']}";
+                				}
+                				?>      
+              				</td>
+  						</tr>
+  						<tr>
+  							<td>
+  								E-mail
+  							</td>
+  							<td>
+                				<?php
+                				if (isset($_SESSION['mail'])) {
+                			  	echo "{$_SESSION['mail']}";
+                				}
+                				?>      
+              				</td>
+  						</tr>
+        			</table>
+        		</div>
+        	</div>
+        </div>
+
+<?php include('bottom.php'); ?>

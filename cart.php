@@ -1,38 +1,27 @@
-<?php
-session_start();
-require('logged.php');
+<?php 
+require('config.php');
+include('top.php'); 
+
 if (logged_in()) {
-	
-
-include('config.php');
-
-$stotal = 0;
-$session_id = $_SESSION['PHPSESSID'];
-$stmt = "SELECT * FROM nick_cart INNER JOIN nick_books ON nick_cart.product_id=nick_books.id WHERE nick_cart.session_id='".$session_id."'";
-$result = mysqli_query($conn,$stmt);
-$num = mysqli_num_rows($result);
+	$stotal = 0;
+	$session_id = $_SESSION['PHPSESSID'];
+	$stmt = "SELECT * FROM nick_cart INNER JOIN nick_books ON nick_cart.product_id=nick_books.id WHERE nick_cart.session_id='".$session_id."'";
+	$result = mysqli_query($conn,$stmt);
+	$num = mysqli_num_rows($result);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-  	<script type="text/javascript" src="js/bootstrap.js"></script>
-  	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<title>Shopping Cart</title>
-</head>
-<body>
+<!-- Page Content -->
+    <div class="container">
 
-<div class="page-header">
-  <h1 style="margin-left: 2%;">IT Book Shop</h1>
-</div>
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Shopping Cart</h1>
+            </div>
+        </div>
+        <!-- /.row -->
 
-<?php include('authenticated_nav.php'); ?>
-
-<div class="container-fluid">
-	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 		<?php
 			if($num > 0){
 			while($row = mysqli_fetch_assoc($result)){
@@ -40,31 +29,31 @@ $num = mysqli_num_rows($result);
 				$_SESSION['subtotal'] = $stotal;
 		?>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<table class="table table-bordered" style="width: 100%;">
+			<table class="table table-bordered table-wide">
 				<tbody>
 					<tr>
-						<td rowspan="4" class="mytd2" style="vertical-align: middle;">
+						<td rowspan="4" class="td2">
 							<img class="img-responsive" src="<?=$row['image']?>" alt="<?=$row['title']?>" >
 						</td>
-						<td class="mytd">
-							Title: <label style="font-size: 16px;"><?=$row['title']?></label>
+						<td class="td8">
+							Title: <?=$row['title']?>
 						</td>
 					</tr>
 					<tr>
-						<td class="mytd">
-							Quantity: <label><?=$row['quantity'];?></label>
+						<td class="td8">
+							Quantity: <?=$row['quantity'];?>
 						</td>
 					</tr>
 					<tr>
-						<td class="mytd">
-							Price: <span class="label label-default" style="font-size: 16px;"><?=$row['price']?> USD</span>
+						<td class="td8">
+							Price: <?=$row['price']?> USD
 						</td>
 					</tr>
 					<tr>
-						<td class="mytd">
+						<td class="td8">
 							<form action="remove.php" method="post">
 								<input type="hidden" name="pr_id" value="<?=$row['product_id']?>">
-								<input type="submit" name="remove" class="btn btn-danger" style="font-size: 12px;" value="Remove">
+								<input type="submit" name="remove" class="btn btn-danger btn-md" value="Remove">
 							</form>
 						</td>
 					</tr>
@@ -78,20 +67,19 @@ $num = mysqli_num_rows($result);
 		}
 		?>
 	</div>
-	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="float: right;margin-bottom: 1%;">
+
+	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 sub">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<label style="font-size: 20px;">Subtotal:<?php echo "{$_SESSION['subtotal']}"; ?> USD</label>
+			Subtotal: <?php echo "{$_SESSION['subtotal']}"; ?> USD
 			<form action="place_order.php">
-				<input type="submit" value="Proceed to checkout" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+				<input type="submit" value="Proceed to checkout" class="btn btn-warning checkout">
 			</form>
 		</div>
 	</div>
-</div>
 
-</body>
-</html>
-<?php
+<?php 
+include('bottom.php');
 } else {
 	header('Location:signin.php');
-}
+} 
 ?>

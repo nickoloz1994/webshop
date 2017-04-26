@@ -24,6 +24,6 @@ while($rows = mysqli_fetch_array($res)){
 	$sql = "INSERT INTO nick_order_details(order_id,product_id,quantity) VALUES($id,$pr_id,$qty)";
 	mysqli_query($conn,$sql) or die("details insert failed");
 }
-header("Location:shippingaddress.php");
+header("Location:shipping.php");
 
 ?>

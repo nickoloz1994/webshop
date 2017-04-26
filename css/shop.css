@@ -1,0 +1,95 @@
+body {
+    padding-top: 70px; 
+}
+
+.shop-item {
+    margin-bottom: 1.56em;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.group { 
+	position: relative; 
+	margin-bottom: 45px; 
+}
+
+.login {
+	width: 60%;
+	margin: auto;
+}
+
+.reg {
+	width: 80%;
+	margin: auto;
+}
+
+.btn-reg {
+	background-color: #CCCCCC;
+}
+
+.table-wide {
+	width: 100%;
+}
+
+td {
+	font-size: 1em;
+}
+
+.td8 {
+  width: 80%;
+}
+
+.td2 {
+  width: 20%;
+  vertical-align: middle;
+}
+
+.sub {
+	float: right;
+	margin-bottom: 2%;
+}
+
+.checkout {
+	width: 100%;
+	margin-top: 5%;
+}
+
+.full {
+    background: url('http://placehold.it/1920x1080') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.fit {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+img {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.butt {
+	border: none;
+	background-color: transparent;
+	color: grey;
+	transform: none;
+}
+
+.butt:hover {
+	background-color: transparent;
+	color: white;
+}
+
+.contact {
+	margin: 40px 0 20px;
+}
+
+form {
+	margin-bottom: 2%;
+}

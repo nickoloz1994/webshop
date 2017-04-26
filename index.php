@@ -1,36 +1,21 @@
 <?php 
-session_start();
+require('config.php');
+include('top.php');
+include('pager.php'); 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<title>Main Page</title>
-</head>
-<body>
+<!-- Page Content -->
+    <div class="container">
 
-<div class="page-header">
-  <h1 style="margin-left: 2%;">IT Book Shop</h1>
-</div>
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Book Shop</h1>
+            </div>
+        </div>
+        <!-- /.row -->
 
-<?php 
-
-require_once('config.php');
-require_once('logged.php');
-include('pager.php');
-
-if (logged_in()) {
-  include('authenticated_nav.php');
-}
-else{
-  include('regular_nav.php');
-}
-
+<?php
 $pager = new Pager();
 
 $results = $conn->query("SELECT id,title,image FROM nick_books;");
@@ -50,41 +35,37 @@ if ($i <= $totalPages) {
 
 ?>
 
-<div class="row">
+        <!-- Projects Row -->
+        <div class="row">
+            <?php 
+                while ($row=mysqli_fetch_array($result)) {
+            ?>
+                <div class="col-md-4 shop-item">
+                    <a href="product.php?id=<?=$row['id']?>">
+                        <img class="img-responsive" src="<?=$row["image"]?>" alt="<?=$row["title"]?>">
+                    </a>
+                    <h3 class="fit">
+                        <a href="product.php?id=<?=$row['id']?>"><?=$row["title"]?></a>
+                    </h3>
+                </div>
+            <?php } ?>
+        </div>
+        <!-- /.row -->
 
-  <?php 
+        <hr>
 
-    while ($row=mysqli_fetch_array($result)) {
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <?php
+                  $i++;
+                }//closing if block
+                echo $pager->pageNumbers();
+                ?>
+            </div>
+        </div>
+        <!-- /.row -->
 
-  ?>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <img src="<?=$row["image"]?>" alt="...">
-        <div class="caption">
-          <h4><?=$row["title"]?></h4>
-          <p><a href="product.php?id=<?=$row['id']?>" class="btn btn-primary" role="button">More...</a>
-         </div>
-      </div>
-    </div>
+        <hr>
 
-  <?php
-    } //closing while block
-  ?>
-</div>
-
-<div class="text-center">
-
-<?php
-  $i++;
-}//closing if block
-echo $pager->pageNumbers();
-?>
-
-</div>
-
-<?php
-include('footer.php'); 
-?>
-
-</body>
-</html>
+<?php include('bottom.php'); ?>

@@ -6,15 +6,11 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
-  overflow-x: hidden;
-  height: 100%;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
-  min-height: 100%;
-  font-family: 'Audiowide', cursive;
 }
 article,
 aside,
@@ -2446,8 +2442,6 @@ table th[class*="col-"] {
 .table-responsive {
   min-height: .01%;
   overflow-x: auto;
-  width: 50%;
-  margin-left: 2%;
 }
 @media screen and (max-width: 767px) {
   .table-responsive {
@@ -2553,8 +2547,8 @@ output {
   color: #555;
 }
 .form-control {
-  /*display: block;*/
-  max-width: 60%;
+  display: block;
+  width: 100%;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -2636,8 +2630,6 @@ input[type="search"] {
 }
 .form-group {
   margin-bottom: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .radio,
 .checkbox {
@@ -3439,10 +3431,6 @@ fieldset[disabled] .btn-link:focus {
   color: #777;
   text-decoration: none;
 }
-
-.btn-group-lg {
-  padding: 20px;
-}
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 10px 16px;
@@ -3525,7 +3513,6 @@ tbody.collapse.in {
 .dropup,
 .dropdown {
   position: relative;
-  display: inline;
 }
 .dropdown-toggle:focus {
   outline: 0;
@@ -3830,7 +3817,6 @@ tbody.collapse.in {
   position: relative;
   display: table;
   border-collapse: separate;
-  padding-left: 20px;
 }
 .input-group[class*="col-"] {
   float: none;
@@ -4288,7 +4274,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  padding: 0px 10px 0px 10px;
+  padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
 }
@@ -4379,13 +4365,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-form {
-  /*padding: 10px 15px;*/
+  padding: 10px 15px;
   margin-top: 8px;
   margin-right: -15px;
   margin-bottom: 8px;
   margin-left: -15px;
-  /*border-top: 0px solid transparent;
-  border-bottom: 0px solid transparent;*/
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
 }
@@ -4883,9 +4869,6 @@ a.label:focus {
 }
 .label-default {
   background-color: #777;
-  border-radius: 6px;
-  line-height: 1.3333333;
-  font-size: 14px;
 }
 .label-default[href]:hover,
 .label-default[href]:focus {
@@ -4893,10 +4876,6 @@ a.label:focus {
 }
 .label-primary {
   background-color: #337ab7;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
-  border-radius: 6px;
 }
 .label-primary[href]:hover,
 .label-primary[href]:focus {
@@ -4979,6 +4958,7 @@ a.badge:focus {
 .jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
+  margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
 }
@@ -6774,71 +6754,4 @@ button.close {
     display: none !important;
   }
 }
-
-.footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  max-height: 500px;
-  background-color: #1f3e60;
-}
-.container .text-muted {
-  margin: 20px 0;
-  color: white;
-  font-weight: bold;
-}
-a:link {
-  text-decoration: none;
-}
 /*# sourceMappingURL=bootstrap.css.map */
-
-.mytd {
-  width: 80%;
-}
-
-.mytd2 {
-  width: 20%;
-}
-
-@media (max-width: 991px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin: 7.5px -15px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .navbar-text {
-        float: none;
-        margin: 15px 0;
-    }
-    /* since 3.1.0 */
-    .navbar-collapse.collapse.in { 
-        display: block!important;
-    }
-    .collapsing {
-        overflow: hidden!important;
-    }
-}
-
-div {
-  font-family: 'Audiowide', cursive;
-}

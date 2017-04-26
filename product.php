@@ -1,31 +1,6 @@
-<?php
-session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<title>Product</title>
-</head>
-<body>
-
-<div class="page-header">
-  <h1 style="margin-left: 2%;">IT Book Shop</h1>
-</div>
-
 <?php 
-require_once('config.php');
-require_once('logged.php');
-if (logged_in()) {
-  include('authenticated_nav.php');
-}
-else{
-  include('regular_nav.php');
-}
+require('config.php');
+include('top.php'); 
 
 $statement = $conn->prepare(
   "SELECT `title`,`isbn`,`price`,`pages`,`language`,`edition`,`author`,`image`
@@ -35,73 +10,77 @@ $statement->execute();
 $results = $statement->get_result();
 $row = $results->fetch_assoc();
 ?>
-<div style="margin-bottom: 1%;">
-  <div class="row" >
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-      <img src="<?=$row["image"]?>" class="img-responsive img-thumbnail" alt="Responsive image" style="position: relative;margin-left: 2%;">
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" style="margin-top: 8%;">
-      
-        <h4><span class="label label-success" >Price <?=$row["price"]?>$</span></h4>
-      
-      
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="margin-top: 6%;position: relative; float: right;">
-    <?php
-      if (logged_in()) {
-    ?>
-    <form action="addtocart.php" method="post">
-    <div class="form-group">
-      <label class="label label-success" style="font-size: 18px;">Qty:</label>
-        <select name="quantity">
-          <?php
-          for ($i=1; $i <= 30; $i++) { 
-          ?>
-          <option><?php echo "{$i}";?></option>
-          <?php
-          }
-          ?>
-        </select>
-        <span class="label label-default" style="font-size: 24px; background-color: white; color: black;">Total:</span>
-      
-        <input type="hidden" name="id" value="<?=$_GET['id']?>">
-        <input type="submit" value="Add to cart" class="btn btn-warning" style="width: 100%; margin-top: 5%;">
+
+<!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"><?=$row["title"]?></h1>
+            </div>
         </div>
-      </form> 
-      <?php } ?> 
-    </div>
-  </div>
-</div>
+        <!-- /.row -->
+        <div class="row">
+        	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        		<div class="row">
+        			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        				<img src="<?=$row["image"]?>" class="img-responsive img-thumbnail" alt="<?=$row["title"]?>">
+        			</div>
+        			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        				<h4><span class="label label-success" >Price <?=$row["price"]?>$</span></h4>
+        			</div>
+        		</div> 
+        		<div class="table-responsive">
+				  <table class="table table-hover">
+				  <tr>
+				  	<td>Title</td>
+				  	<td><?=$row["title"]?></td>
+				  </tr>
+				  <tr>
+				  	<td>Author</td>
+				  	<td><?=$row["author"]?></td>
+				  </tr>
+				  <tr>
+				  	<td>Edition</td>
+				  	<td><?=$row["edition"]?></td>
+				  </tr>
+				  <tr>
+				  	<td>ISBN-13</td>
+				  	<td><?=$row["isbn"]?></td>
+				  </tr>
+				  <tr>
+				  	<td>Pages</td>
+				  	<td><?=$row["pages"]?></td>
+				  </tr>
+				  <tr>
+				  	<td>Language</td>
+				  	<td><?=$row["language"]?></td>
+				  </tr>
+				  </table>
+				</div>       	
+        	</div>
 
+        	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        		<?php if(logged_in()){ ?>
+        				<form action="addtocart.php" method="post">
+        						<div class="form-group">
+                                    <div class="row">
+        							    <label for="qty">Qty:</label>
+        								<select name="quantity" id="qty">
+                                            <?php for($i=1; $i <= 30; $i++){ ?>
+                                                <option><?php echo "{$i}"; ?></option>
+        								    <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+        								<input type="hidden" name="id" value="<?=$_GET["id"]?>">
+                                        <input type="submit" value="Add to cart" class="btn btn-warning">
+                                    </div>
+                                </div>
+                            </form>
+        		<?php } ?>
+        	</div>
+        </div>
 
-<div class="table-responsive">
-  <table class="table table-hover">
-  <tr>
-  	<td>Title</td>
-  	<td><?=$row["title"]?></td>
-  </tr>
-  <tr>
-  	<td>Author</td>
-  	<td><?=$row["author"]?></td>
-  </tr>
-  <tr>
-  	<td>Edition</td>
-  	<td><?=$row["edition"]?></td>
-  </tr>
-  <tr>
-  	<td>ISBN-13</td>
-  	<td><?=$row["isbn"]?></td>
-  </tr>
-  <tr>
-  	<td>Pages</td>
-  	<td><?=$row["pages"]?></td>
-  </tr>
-  <tr>
-  	<td>Language</td>
-  	<td><?=$row["language"]?></td>
-  </tr>
-  </table>
-</div>
-
-</body>
-</html>
+<?php include('bottom.php'); ?>
