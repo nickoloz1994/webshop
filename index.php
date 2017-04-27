@@ -40,7 +40,7 @@ if ($i <= $totalPages) {
             <?php 
                 while ($row=mysqli_fetch_array($result)) {
             ?>
-                <div class="col-md-4 shop-item">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 shop-item">
                     <a href="product.php?id=<?=$row['id']?>">
                         <img class="img-responsive" src="<?=$row["image"]?>" alt="<?=$row["title"]?>">
                     </a>

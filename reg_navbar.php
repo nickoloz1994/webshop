@@ -19,13 +19,15 @@
                     <li>
                         <a href="contact.php">Contact</a>
                     </li>
+                    <li>
+                        <form class="navbar-form navbar-left" action="search.php" method="get">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." name="searchinput">
+                          </div>
+                          <button type="submit" class="btn btn-default" name="search">Search</button>
+                        </form>
+                    </li>
                 </ul>
-                <form class="navbar-form navbar-left" action="search.php" method="get">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search..." name="searchinput">
-                  </div>
-                  <button type="submit" class="btn btn-default" name="search">Search</button>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="signin.php">
