@@ -5,9 +5,12 @@ include('top.php');
 if (logged_in()) {
 	$stotal = 0;
 	$session_id = $_SESSION['PHPSESSID'];
-	$stmt = "SELECT * FROM nick_cart INNER JOIN nick_books ON nick_cart.product_id=nick_books.id WHERE nick_cart.session_id='".$session_id."'";
-	$result = mysqli_query($conn,$stmt);
-	$num = mysqli_num_rows($result);
+	$stmt = $conn->prepare("SELECT * FROM nick_cart INNER JOIN nick_books ON nick_cart.product_id=nick_books.id 
+							WHERE nick_cart.session_id = ?");
+	$stmt->bind_param("s",$session_id);
+	$stmt->execute() or die("Execute failed: (".$stmt->errno. ") ".$stmt->error);
+	$result = $stmt->get_result();
+	$num = $result->num_rows;
 ?>
 
 <!-- Page Content -->
@@ -24,7 +27,7 @@ if (logged_in()) {
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 		<?php
 			if($num > 0){
-			while($row = mysqli_fetch_assoc($result)){
+			while($row = $result->fetch_assoc()){
 				$stotal += $row['quantity'] * $row['price'];
 				$_SESSION['subtotal'] = $stotal;
 		?>

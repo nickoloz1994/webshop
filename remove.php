@@ -1,11 +1,14 @@
 <?php
 session_start();
 require_once('config.php');
+
 if (isset($_POST['remove'])) {
 	$product = $_POST['pr_id'];
 	$session = $_SESSION['PHPSESSID'];
-	$removesql = "DELETE FROM nick_cart WHERE product_id='".$product."' AND session_id='".$session."'";
-	mysqli_query($conn,$removesql);
+	
+	$stmt = $conn->prepare("DELETE FROM nick_cart WHERE product_id = ? AND session_id = ?");
+	$stmt->bind_param("ss",$product,$session);
+	$stmt->execute() or die("Failed");
 
 	header("Location:cart.php");
 }

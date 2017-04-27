@@ -7,23 +7,22 @@ $pr_id = $_POST['id'];
 $qty = $_POST['quantity'];
 $session = $_SESSION['PHPSESSID'];
 
-$sql = "SELECT * FROM nick_cart WHERE session_id='".$session."' AND product_id='".$pr_id."'";
-$result = mysqli_query($conn,$sql);
-$num = mysqli_num_rows($result);
+$stmt = $conn->prepare("SELECT * FROM nick_cart WHERE session_id = ? AND product_id = ? ");
+$stmt->bind_param("ss",$session,$pr_id);
+$stmt->execute() or die("Failed");
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
 
-if ($num > 0) {
-	while ($row = mysqli_fetch_array($result)) {
-		
-			$newqty = $row['quantity'] + $qty;
-			$query = "UPDATE nick_cart SET quantity='".$newqty."' WHERE session_id='".$session."' AND product_id='".$pr_id."'";
-			mysqli_query($conn,$query) or die("Failed");
-		
-	}
+if ($row) {
+	$newqty = $row['quantity'] + $qty;
+	$stmt1 = $conn->prepare("UPDATE nick_cart SET quantity = ? WHERE session_id = ? AND product_id = ?");
+	$stmt1->bind_param("sss",$newqty,$session,$pr_id);
+	$stmt1->execute() or die("Failed");
 }else{
-	$sql = "INSERT INTO nick_cart (session_id,product_id,quantity) VALUES ('$session',$pr_id,$qty)";
-	mysqli_query($conn,$sql) or die("Failed");
+	$stmt2 = $conn->prepare("INSERT INTO nick_cart (session_id,product_id,quantity) VALUES (?,?,?)");
+	$stmt2->bind_param("sss",$session,$pr_id,$qty);
+	$stmt2->execute() or die("Failed");
 }
 
 header("Location: cart.php");
-echo $num;
 ?>

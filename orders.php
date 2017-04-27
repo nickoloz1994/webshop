@@ -5,8 +5,10 @@ include('top.php');
 if(logged_in()){
 	$user_id = $_SESSION['userid'];
 
-	$sql = "SELECT * FROM nick_order_details JOIN nick_orders ON nick_orders.order_id=nick_order_details.order_id JOIN nick_books ON nick_books.id=nick_order_details.product_id WHERE nick_orders.cust_id='".$user_id."'";
-	$result = mysqli_query($conn,$sql);
+	$stmt = $conn->prepare("SELECT * FROM nick_order_details JOIN nick_orders ON nick_orders.order_id=nick_order_details.order_id JOIN nick_books ON nick_books.id=nick_order_details.product_id WHERE nick_orders.cust_id = ?");
+	$stmt->bind_param("s",$user_id);
+	$stmt->execute() or die("Failed");
+	$result = $stmt->get_result();
 
 ?>
 
@@ -30,7 +32,7 @@ if(logged_in()){
         </div>
 
         <?php
-		while($row=mysqli_fetch_array($result)){
+		while($row = $result->fetch_assoc()){
 		?>
 
         <div class="row">

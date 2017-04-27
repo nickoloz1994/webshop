@@ -17,18 +17,20 @@ include('top.php');
 		<?php 
 		if (isset($_GET['search'])) {
 	
-			$string = $_GET['searchinput'];
+			$string = "%{$_GET['searchinput']}%";
 
-			$sql = "SELECT * FROM nick_books WHERE title LIKE '%".$string."%' OR author LIKE '%".$string."%'";
-			$result = mysqli_query($conn, $sql);
-			$num = mysqli_num_rows($result);
+            $stmt = $conn->prepare("SELECT * FROM nick_books WHERE title LIKE ? OR author LIKE ?");
+            $stmt->bind_param("ss",$string,$string);
+            $stmt->execute() or die("Failed");
+			$result = $stmt->get_result();
+			$num = $result->num_rows;
 	
 			if ($num > 0) {
 		?>
 
 		<div class="row">
             <?php 
-                while ($row=mysqli_fetch_array($result)) {
+                while ($row = $result->fetch_assoc()) {
             ?>
                 <div class="col-md-4 shop-item">
                     <a href="product.php?id=<?=$row['id']?>">

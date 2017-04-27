@@ -34,11 +34,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (isset($_POST['cancel'])) {
       $id = $_SESSION['userid'];
       $ord_id = $_SESSION['order_id'];
-      $sql = "DELETE FROM nick_orders WHERE cust_id='".$id."'";
-      mysqli_query($conn,$sql);
+    
+      $stmt1 = $conn->prepare("DELETE FROM nick_orders WHERE cust_id = ?");
+      $stmt1->bind_param("s",$id);
+      $stmt1->execute() or die("Failed");
 
-      $sql = "DELETE FROM nick_order_details WHERE order_id='".$ord_id."'";
-      mysqli_query($conn,$sql);
+      $stmt2 = $conn->prepare("DELETE FROM nick_order_details WHERE order_id = ?");
+      $stmt2->bind_param("s",$ord_id);
+      $stmt2->execute() or die("Failed");
 
       header("Location:index.php");
     }

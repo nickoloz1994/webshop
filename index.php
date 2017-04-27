@@ -18,7 +18,9 @@ include('pager.php');
 <?php
 $pager = new Pager();
 
-$results = $conn->query("SELECT id,title,image FROM nick_books;");
+$stmt1 = $conn->prepare("SELECT id,title,image FROM nick_books;");
+$stmt1->execute();
+$results = $stmt1->get_result();
 
 $totalRecords = $results->num_rows;
 $pager->total = $totalRecords;
@@ -30,15 +32,17 @@ if ($i <= $totalPages) {
   $offset = ($pager->currentPage-1)*$pager->itemsPerPage;
   $limit = $pager->itemsPerPage;
 
-  $sql = "SELECT * FROM nick_books LIMIT $offset, $limit";
-  $result = mysqli_query($conn, $sql);
+  $stmt = $conn->prepare("SELECT * FROM nick_books LIMIT ?, ?");
+  $stmt->bind_param("ss",$offset,$limit);
+  $stmt->execute() or die("Failed");
+  $result = $stmt->get_result();
 
 ?>
 
         <!-- Projects Row -->
         <div class="row">
             <?php 
-                while ($row=mysqli_fetch_array($result)) {
+                while ($row=$result->fetch_assoc()) {
             ?>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 shop-item">
                     <a href="product.php?id=<?=$row['id']?>">
