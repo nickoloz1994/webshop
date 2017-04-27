@@ -1,8 +1,4 @@
-<?php 
-session_start();
-include('logged.php');
-
-?>
+<?php include('logged.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

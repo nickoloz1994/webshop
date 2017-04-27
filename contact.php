@@ -1,4 +1,7 @@
-<?php include('top.php'); ?>
+<?php 
+session_start();
+include('top.php'); 
+?>
 
 <!-- Page Content -->
     <div class="container">

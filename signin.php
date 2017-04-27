@@ -1,37 +1,38 @@
 <?php 
 require('config.php');
-include('top.php'); 
 
 $failed = false;
 
 if (isset($_POST['login'])) {
-	$statement = $conn->prepare(
-	  "SELECT * FROM nick_users WHERE mail = ? AND password = PASSWORD(?)");
+    $statement = $conn->prepare(
+      "SELECT * FROM nick_users WHERE mail = ? AND password = PASSWORD(?)");
 
-	$statement->bind_param("ss", $_POST["usrmail"], $_POST["usrpass"]);
-	$statement->execute();
-	$results = $statement->get_result();
-	$row = $results->fetch_assoc();
+    $statement->bind_param("ss", $_POST["usrmail"], $_POST["usrpass"]);
+    $statement->execute();
+    $results = $statement->get_result();
+    $row = $results->fetch_assoc();
 
-	if ($row) {
-	  session_start();
-	  $_SESSION['username'] = $row['name'];
-	  $_SESSION['mail'] = $row['mail'];
-	  $_SESSION['surname'] = $row['surname'];
-	  $_SESSION['userid'] = $row['usrid'];
-	  $_SESSION['PHPSESSID'] = session_id();
-	  $_SESSION['subtotal'] = 0;
-	  $_SESSION['user_level'] = (int)$row['user_level'];
+    if ($row) {
+      session_start();
+      $_SESSION['username'] = $row['name'];
+      $_SESSION['mail'] = $row['mail'];
+      $_SESSION['surname'] = $row['surname'];
+      $_SESSION['userid'] = $row['usrid'];
+      $_SESSION['PHPSESSID'] = session_id();
+      $_SESSION['subtotal'] = 0;
+      $_SESSION['user_level'] = (int)$row['user_level'];
 
-	  header('Location: index.php');
-	  $conn->close();
-	}
-	else{
-	  $failed = true;
-	}
+      header('Location:index.php');
+      $conn->close();
+    }
+    else{
+      $failed = true;
+    }
 }
 
-$conn->close();
+$conn->close(); 
+
+include('top.php');
 ?>
 
 <div class="container">
